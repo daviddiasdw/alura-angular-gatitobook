@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NewUser } from './new-user';
+import { NewUserService } from './new-user.service';
 
 @Component({
   selector: 'app-new-user',
@@ -6,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-user.component.scss']
 })
 export class NewUserComponent implements OnInit {
+  newUserForm!: FormGroup
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private newUserService: NewUserService) { }
 
   ngOnInit(): void {
+    this.newUserForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      fullName: ['', [Validators.required, Validators.minLength(5)]],
+      userName: [''],
+      password: ['']
+    })
   }
 
+  register(){
+    const newUser = this.newUserForm.getRawValue() as NewUser;
+    console.log(newUser)
+  }
 }

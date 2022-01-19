@@ -1,17 +1,30 @@
 <h4 class="text-center">Registre-se e mostre seu pet ao mundo!</h4><hr>
 
-<form class="form mt-4">
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Nome Completo">
+<form class="form mt-4" [formGroup]="newUserForm" (submit)="register()">
+  <div class="form-group mb-3">
+    <input type="text" class="form-control" placeholder="Nome Completo" formControlName="fullName">
+    <app-message
+      *ngIf="newUserForm.get('fullName')?.errors && newUserForm.get('fullName')?.touched"
+      message="Nome Incorreto">
+    </app-message>
   </div>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Usuário">
+  <div class="form-group mb-3">
+    <input type="text" class="form-control" placeholder="Usuário" formControlName="userName">
   </div>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="e-mail">
+  <div class="form-group mb-3">
+    <input type="text" class="form-control" placeholder="e-mail" formControlName="email">
+    <app-message
+      *ngIf="newUserForm.get('email')?.errors?.['required'] && newUserForm.get('email')?.touched"
+      message="Email Obrigatório">
+    </app-message>
+    <app-message
+      *ngIf="newUserForm.get('email')?.errors?.['email'] &&
+      newUserForm.get('email')?.touched"
+      message="E-mail no formato incorreto">
+    </app-message>
   </div>
-  <div class="form-group">
-    <input type="password" class="form-control" placeholder="Senha">
+  <div class="form-group mb-3">
+    <input type="password" class="form-control" placeholder="Senha" formControlName="password">
   </div>
 
   <button class="btn btn-primary btn-block">Cadastrar</button>
