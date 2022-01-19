@@ -4,7 +4,9 @@
   <div class="form-group mb-3">
     <input type="text" class="form-control" placeholder="Nome Completo" formControlName="fullName">
     <app-message
-      *ngIf="newUserForm.get('fullName')?.errors && newUserForm.get('fullName')?.touched"
+      *ngIf="
+        newUserForm.get('fullName')?.errors &&
+        newUserForm.get('fullName')?.touched"
       message="Nome Incorreto">
     </app-message>
   </div>
@@ -16,6 +18,11 @@
         newUserForm.get('userName')?.touched"
       message="Apenas letras minúsculas">
     </app-message>
+    <app-message
+      *ngIf="
+        newUserForm.get('userName')?.errors?.['userExisting']"
+        message="Usuário já existe">
+      </app-message>
   </div>
   <div class="form-group mb-3">
     <input type="text" class="form-control" placeholder="e-mail" formControlName="email">
