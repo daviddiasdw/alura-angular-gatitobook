@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NewUser } from './new-user';
 import { NewUserService } from './new-user.service';
+import { tinyValidator } from './tiny.validator';
 
 @Component({
   selector: 'app-new-user',
@@ -17,7 +18,7 @@ export class NewUserComponent implements OnInit {
     this.newUserForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       fullName: ['', [Validators.required, Validators.minLength(5)]],
-      userName: [''],
+      userName: ['', [tinyValidator]],
       password: ['']
     })
   }
