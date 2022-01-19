@@ -6,7 +6,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { LoginComponent } from './login/login.component';
 import { MessageModule } from '../components/message/message.module';
-import { MessageComponent } from '../components/message/message.component';
 import { NewUserComponent } from './new-user/new-user.component';
 
 
